@@ -5,9 +5,13 @@ import Spinner from 'react-bootstrap/Spinner';
 class ChoiceImage extends React.Component {
     constructor(props) {
         super(props);
-        this.onImageChosen = this.onImageChosen.bind();
-        // this.imageLoaded = this.imageLoaded.bind();
-        this.state = {src: this.props.src, isImageLoaded: false, imageState: 'none', imageLoadError: false};
+        this.state = {
+            src: this.props.src,
+            isImageLoaded: false,
+            imageState: 'none',
+            imageLoadError: false,
+            border: props.border
+        };
     }
 
     componentDidMount() {
@@ -15,11 +19,6 @@ class ChoiceImage extends React.Component {
     }
 
     componentWillUnmount() {
-    }
-
-    onImageChosen(event) {
-        event.preventDefault();
-        console.log('clicked')
     }
 
     imageLoaded(_this) {
@@ -35,14 +34,15 @@ class ChoiceImage extends React.Component {
             <div className="answer-image col-5 m-auto p-0">
                 {!this.state.imageLoadError &&
                 <img src={this.props.src} alt="choiceImg" className="image m-auto" onLoad={() => this.imageLoaded(this)}
-                     onErrorCapture={() => this.imageError(this)}/>
+                     onErrorCapture={() => this.imageError(this)} style={{
+                    border: this.props.border
+                }} onClick={this.props.onClick}/>
                 }
                 {!this.state.isImageLoaded &&
                 <div className="choice-container w-100 h-100 p-0">
                     <Spinner variant="info" animation="grow" className="m-auto"/>
                 </div>
                 }
-
             </div>
         )
     }
