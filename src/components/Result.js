@@ -11,16 +11,16 @@ class Result extends React.Component {
     render() {
         //TODO: add share button
         return (
-            <Container fluid={true} className="p-5 m-auto">
+            <Container fluid={true} className="pt-3 m-auto">
                 <Row className="m-auto pb-5 mb-5" style={{textAlign: 'right'}}>
-                    <p className="m-auto title">
+                    <div className="m-auto title">
                         {this.state.title}
-                    </p>
+                    </div>
                 </Row>
-            <Row className=" m-auto p-5 mt-5" style={{textAlign: 'right'}}>
-                    <p className="m-auto personality">
+            <Row className=" m-auto mt-5" style={{textAlign: 'right'}}>
+                    <div className="m-auto personality">
                         {this.state.personality}
-                    </p>
+                    </div>
                 </Row>
             </Container>
         );

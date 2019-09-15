@@ -5,7 +5,6 @@ import Question from "./Question";
 import axios from "axios";
 import Constants from "../Constants";
 import Result from "./Result";
-import Spinner from "react-bootstrap/Spinner";
 import Loading from "./Loading";
 import Retry from './Retry'
 
