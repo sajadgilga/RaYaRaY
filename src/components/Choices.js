@@ -7,36 +7,39 @@ class Choices extends React.Component {
     constructor(props) {
         super(props);
         this.onImageChosen = this.onImageChosen.bind(this);
-        this.state = {border1: "", border2: ""}
+        this.state = {border: ["", "", "", ""]}
     }
 
-    onImageChosen(event, whichImg, ) {
+    onImageChosen(event, whichImg) {
         event.preventDefault();
         console.log('clicked');
-        if (whichImg === 1) {
-            if (this.state.border1 === "")
-                this.setState({border1: "yellowgreen solid medium"});
-            else
-                this.props.answerCallback(1);
-            this.setState({border2: ""});
-        } else if (whichImg === 2) {
-            if (this.state.border2 === "")
-                this.setState({border2: "yellowgreen solid medium"});
-            else
-                this.props.answerCallback(2);
-            this.setState({border1: ""});
+
+        let border = ["", "", "", ""];
+        if (this.state.border[whichImg] === "") {
+            border[whichImg] = "yellowgreen solid medium";
+            this.setState({border: border});
+        } else {
+            this.setState({border: border});
+            this.props.answerCallback(whichImg + 1);
         }
     }
 
+
     render() {
-        // TODO: edit src and image url getting
+        // TODO: edit src and image URL getting
         return (
             <Container fluid={true} className="m-0 mt-1 mb-2 p-0" style={{verticalAlign: 'bottom'}}>
-                <Row className="m-0">
-                    <ChoiceImage src={this.props.src1} border={this.state.border1}
+                <Row className="m-0 mb-3">
+                    <ChoiceImage src={this.props.src[0]} border={this.state.border[0]}
+                                 onClick={(e) => this.onImageChosen(e, 0)}/>
+                    <ChoiceImage src={this.props.src[1]} border={this.state.border[1]}
                                  onClick={(e) => this.onImageChosen(e, 1)}/>
-                    <ChoiceImage src={this.props.src2} border={this.state.border2}
+                </Row>
+                <Row className="m-0">
+                    <ChoiceImage src={this.props.src[2]} border={this.state.border[2]}
                                  onClick={(e) => this.onImageChosen(e, 2)}/>
+                    <ChoiceImage src={this.props.src[3]} border={this.state.border[3]}
+                                 onClick={(e) => this.onImageChosen(e, 3)}/>
                 </Row>
             </Container>
         );

@@ -7,7 +7,6 @@ class Story extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {storyText: props.text};
     }
 
     render() {
@@ -15,7 +14,7 @@ class Story extends React.Component {
             <Container fluid={true} className="p-5 m-auto">
                 <Row className="m-0 m-auto" style={{textAlign: 'right'}}>
                     <p className="m-auto story">
-                        {this.state.storyText}
+                        {this.props.text}
                     </p>
                 </Row>
             </Container>

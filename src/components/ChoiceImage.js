@@ -6,7 +6,6 @@ class ChoiceImage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            src: this.props.src,
             isImageLoaded: false,
             imageState: 'none',
             imageLoadError: false,
@@ -15,7 +14,6 @@ class ChoiceImage extends React.Component {
     }
 
     componentDidMount() {
-        console.log('mounted')
     }
 
     componentWillUnmount() {
@@ -26,7 +24,6 @@ class ChoiceImage extends React.Component {
     }
 
     imageError(_this) {
-        _this.setState({imageLoadError: true})
     }
 
     render() {
