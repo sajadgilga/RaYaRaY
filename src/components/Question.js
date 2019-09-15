@@ -3,16 +3,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../components.css"
 import Story from "./Story";
 import Choices from "./Choices";
+import axios from "axios"
+import Constants from "../Constants";
 
 class Question extends React.Component {
     constructor(props) {
         super(props);
-
+        this.nextQuestion(0);
         this.state = {isOver: false, question: {text: '', url1: '', url2: ''}}
     }
 
+    setQuestion(question) {
+        this.setState({question: {text: question.text, url1: question.url[0], url2: question.url[1]}})
+    }
+
     nextQuestion(answer) {
-        console.log('next question ' + this.state.isOver)
+        axios({
+            method: "post",
+            url: Constants.url,
+            headers: {
+                id: this.props.userId,
+                answer: answer
+            }
+        }).then((response) => {
+                this.setQuestion(response.data);
+            }
+        ).catch((reason) => {
+            this.onError(reason);
+        });
+    }
+
+    onError(reason) {
+
     }
 
     render() {

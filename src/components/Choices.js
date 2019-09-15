@@ -17,13 +17,13 @@ class Choices extends React.Component {
             if (this.state.border1 === "")
                 this.setState({border1: "yellowgreen solid medium"});
             else
-                this.props.answerCallback();
+                this.props.answerCallback(1);
             this.setState({border2: ""});
         } else if (whichImg === 2) {
             if (this.state.border2 === "")
                 this.setState({border2: "yellowgreen solid medium"});
             else
-                this.props.answerCallback();
+                this.props.answerCallback(2);
             this.setState({border1: ""});
         }
     }
