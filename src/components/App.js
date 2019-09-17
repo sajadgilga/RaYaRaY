@@ -19,7 +19,6 @@ class App extends React.Component {
             question: {text: '', URL: ['', '', '', ''], desc: ['','','','']},
             result: {title: '', personality: ''},
             lastAnswer: 0,
-            QIdx: 0
         };
     }
 
@@ -34,7 +33,7 @@ class App extends React.Component {
     setQuestion(question) {
         this.setState((state, props) => ({
             questionReady: true,
-            question: {text: question.text, URL: question.url, desc: question.desc}
+            question: {text: question.text, URL: question.url, desc: question.desc, QIdx: question.questionID}
         }))
     }
 
@@ -46,8 +45,7 @@ class App extends React.Component {
         this.setState((state, props) => ({
             questionReady: false,
             error: false,
-            lastAnswer: answer,
-            QIdx: state.QIdx + 1
+            lastAnswer: answer
         }));
         axios({
             method: "post",
@@ -55,7 +53,7 @@ class App extends React.Component {
             data: {
                 id: this.props.match.params.id,
                 answer: answer,
-                QIdx: this.state.QIdx
+                QIdx: this.state.question.QIdx
             }
         }).then((response) => {
                 if (response.data.state === 0)
@@ -82,7 +80,7 @@ class App extends React.Component {
         if (this.state.questionReady)
             return (
                 <div className="App">
-                    <Question question={this.state.question} progress={(this.state.QIdx - 1)  * 10}
+                    <Question question={this.state.question} progress={(this.state.question.QIdx - 1)  * 10}
                               answerCallback={this.nextQuestion.bind(this)}/>
                 </div>
             );
