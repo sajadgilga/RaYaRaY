@@ -21,6 +21,9 @@ class App extends React.Component {
             lastAnswer: 0,
             QIdx: 0
         };
+    }
+
+    componentDidMount() {
         this.nextQuestion(this.state.lastAnswer);
     }
 
@@ -40,7 +43,6 @@ class App extends React.Component {
     }
 
     nextQuestion(e, answer) {
-
         this.setState((state, props) => ({
             questionReady: false,
             error: false,
