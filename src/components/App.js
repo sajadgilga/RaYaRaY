@@ -19,7 +19,7 @@ class App extends React.Component {
             question: {text: '', URL: ['', '', '', ''], desc: ['','','','']},
             result: {title: '', personality: ''},
             lastAnswer: 0,
-            QIdx: -1
+            QIdx: 0
         };
     }
 
@@ -82,7 +82,7 @@ class App extends React.Component {
         if (this.state.questionReady)
             return (
                 <div className="App">
-                    <Question question={this.state.question} progress={this.state.QIdx * Constants.QUESTION_PROGRESS}
+                    <Question question={this.state.question} progress={(this.state.QIdx - 1)  * Constants.QUESTION_PROGRESS}
                               answerCallback={this.nextQuestion.bind(this)}/>
                 </div>
             );
