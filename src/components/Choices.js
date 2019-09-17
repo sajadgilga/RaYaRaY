@@ -12,7 +12,6 @@ class Choices extends React.Component {
 
     onImageChosen(event, whichImg) {
         event.preventDefault();
-        console.log('clicked');
 
         let border = ["", "", "", ""];
         if (this.state.border[whichImg] === "") {
@@ -30,15 +29,15 @@ class Choices extends React.Component {
         return (
             <Container fluid={true} className="m-0 mt-1 mb-2 p-0" style={{verticalAlign: 'bottom'}}>
                 <Row className="m-0 mb-3">
-                    <ChoiceImage src={this.props.src[0]} border={this.state.border[0]}
+                    <ChoiceImage src={this.props.src[0]} desc={this.props.desc[0]} border={this.state.border[0]}
                                  onClick={(e) => this.onImageChosen(e, 0)}/>
-                    <ChoiceImage src={this.props.src[1]} border={this.state.border[1]}
+                    <ChoiceImage src={this.props.src[1]} desc={this.props.desc[1]} border={this.state.border[1]}
                                  onClick={(e) => this.onImageChosen(e, 1)}/>
                 </Row>
                 <Row className="m-0">
-                    <ChoiceImage src={this.props.src[2]} border={this.state.border[2]}
+                    <ChoiceImage src={this.props.src[2]} desc={this.props.desc[2]} border={this.state.border[2]}
                                  onClick={(e) => this.onImageChosen(e, 2)}/>
-                    <ChoiceImage src={this.props.src[3]} border={this.state.border[3]}
+                    <ChoiceImage src={this.props.src[3]} desc={this.props.desc[3]} border={this.state.border[3]}
                                  onClick={(e) => this.onImageChosen(e, 3)}/>
                 </Row>
             </Container>

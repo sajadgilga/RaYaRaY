@@ -30,10 +30,16 @@ class ChoiceImage extends React.Component {
         return (
             <div className="answer-image col-5 m-auto p-0">
                 {!this.state.imageLoadError &&
-                <img src={this.props.src} alt="choiceImg" className="image m-auto" onLoad={() => this.imageLoaded(this)}
-                     onErrorCapture={() => this.imageError(this)} style={{
-                    border: this.props.border
-                }} onClick={this.props.onClick}/>
+                <div className="m-auto">
+                    <img src={this.props.src} alt="choiceImg" className="image m-auto"
+                         onLoad={() => this.imageLoaded(this)}
+                         onErrorCapture={() => this.imageError(this)} style={{
+                        border: this.props.border
+                    }} onClick={this.props.onClick}/>
+                    <div className="answer-text">
+                        {this.props.desc}
+                    </div>
+                </div>
                 }
                 {!this.state.isImageLoaded &&
                 <div className="choice-container w-100 h-100 p-0">

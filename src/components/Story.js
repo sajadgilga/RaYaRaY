@@ -11,7 +11,7 @@ class Story extends React.Component {
 
     render() {
         return (
-            <Container fluid={true} className="p-5 m-auto">
+            <Container fluid={true} className="p-1 m-auto">
                 <Row className="m-0 m-auto" style={{textAlign: 'right'}}>
                     <p className="m-auto story">
                         {this.props.text}

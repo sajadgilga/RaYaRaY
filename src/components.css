@@ -6,9 +6,14 @@
     overflow: hidden;
 }
 
+.answer-text {
+    text-align: center;
+    font-size: x-small;
+}
+
 .choice-container {
     position: absolute;
-    min-height: 35vh;
+    min-height: 30vh;
     background: rgb(255, 246, 244);
     display: flex;
     vertical-align: center;
@@ -19,8 +24,17 @@
     /*display: inline-block;*/
     margin: 0 auto;
     padding: 0;
-    max-height: 35vh;
+    max-height: 30vh;
+    min-height: 30vh;
     max-width: 42vw;
+}
+
+.image:hover {
+    opacity: .6;
+}
+
+.image:active {
+    opacity: .6;
 }
 
 .story {

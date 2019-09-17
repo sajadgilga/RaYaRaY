@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import Question from "./Question";
 import axios from "axios";
 import Constants from "../Constants";
@@ -15,9 +16,10 @@ class App extends React.Component {
             isOver: false,
             questionReady: false,
             error: false,
-            question: {text: '', URL: ['', '', '', '']},
+            question: {text: '', URL: ['', '', '', ''], desc: ['','','','']},
             result: {title: '', personality: ''},
-            lastAnswer: 0
+            lastAnswer: 0,
+            QIdx: 0
         };
         this.nextQuestion(this.state.lastAnswer);
     }
@@ -27,21 +29,31 @@ class App extends React.Component {
     }
 
     setQuestion(question) {
-        this.setState({questionReady: true, question: {text: question.text, URL: question.url}})
+        this.setState((state, props) => ({
+            questionReady: true,
+            question: {text: question.text, URL: question.url, desc: question.desc}
+        }))
     }
 
     showResult(result) {
         this.setState({isOver: true, result: result});
     }
 
-    nextQuestion(answer) {
-        this.setState({questionReady: false, error: false, lastAnswer: answer});
+    nextQuestion(e, answer) {
+
+        this.setState((state, props) => ({
+            questionReady: false,
+            error: false,
+            lastAnswer: answer,
+            QIdx: state.QIdx + 1
+        }));
         axios({
             method: "post",
             url: Constants.URL + Constants.GET_QUESTION_API,
             data: {
                 id: this.props.match.params.id,
-                answer: answer
+                answer: answer,
+                QIdx: this.state.QIdx
             }
         }).then((response) => {
                 if (response.data.state === 0)
@@ -68,7 +80,8 @@ class App extends React.Component {
         if (this.state.questionReady)
             return (
                 <div className="App">
-                    <Question question={this.state.question} answerCallback={this.nextQuestion.bind(this)}/>
+                    <Question question={this.state.question} progress={this.state.QIdx * Constants.QUESTION_PROGRESS}
+                              answerCallback={this.nextQuestion.bind(this)}/>
                 </div>
             );
         if (this.state.error)
