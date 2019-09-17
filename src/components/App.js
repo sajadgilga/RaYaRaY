@@ -42,7 +42,7 @@ class App extends React.Component {
         this.setState({isOver: true, result: result});
     }
 
-    nextQuestion(e, answer) {
+    nextQuestion(answer) {
         this.setState((state, props) => ({
             questionReady: false,
             error: false,
