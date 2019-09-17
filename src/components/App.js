@@ -19,7 +19,7 @@ class App extends React.Component {
             question: {text: '', URL: ['', '', '', ''], desc: ['','','','']},
             result: {title: '', personality: ''},
             lastAnswer: 0,
-            QIdx: 0
+            QIdx: -1
         };
     }
 
